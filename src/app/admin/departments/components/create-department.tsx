@@ -59,8 +59,11 @@ const CreateDepartment = ({ isOpen, setIsOpen }: PropType) => {
       isOpen={isOpen}
       setIsOpen={setIsOpen}
     >
-      <form onSubmit={handleSubmit(submit)}>
-        <Flex flexDir={"column"} gap={8} px={"1rem"} mt={"2rem"}>
+      <form
+        onSubmit={handleSubmit(submit)}
+        style={{ height: "100%", display: "flex", flexDirection: "column" }}
+      >
+        <Flex flexDir={"column"} gap={8} px={"1rem"} mt={"2rem"} flex={"1"}>
           <AppInput
             id="name"
             label="Name"
@@ -77,7 +80,7 @@ const CreateDepartment = ({ isOpen, setIsOpen }: PropType) => {
             errorMessage={errors.description?.message}
           />
         </Flex>
-        <Flex mt={"18rem"} px={"2rem"} justify={"space-between"}>
+        <Flex mt={"18rem"} px={"2rem"} justify={"space-between"} pb="1rem">
           <AppButton
             variant="outline"
             w="full"

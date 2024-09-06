@@ -69,16 +69,15 @@ const CreateStaff = ({ isOpen, setIsOpen }: PropType) => {
   }));
 
   return (
-    <SideDrawer
-      header="Create Staff"
-      isOpen={isOpen}
-      setIsOpen={setIsOpen}
-    >
-      <form onSubmit={handleSubmit(submit)}>
+    <SideDrawer header="Create Staff" isOpen={isOpen} setIsOpen={setIsOpen}>
+      <form
+        onSubmit={handleSubmit(submit)}
+        style={{ height: "100%", display: "flex", flexDirection: "column" }}
+      >
         {loading && <Loader />}
         {isSuccess && (
           <>
-            <Flex flexDir={"column"} gap={8} px={"1rem"} mt={"2rem"}>
+            <Flex flexDir={"column"} gap={8} px={"1rem"} mt={"2rem"} flex="1">
               <AppInput
                 id="firstName"
                 label="First Name"
@@ -114,7 +113,7 @@ const CreateStaff = ({ isOpen, setIsOpen }: PropType) => {
                 }}
               />
             </Flex>
-            <Flex mt={"6rem"} px={"2rem"} justify={"space-between"}>
+            <Flex mt={"6rem"} px={"2rem"} justify={"space-between"} pb={"1rem"}>
               <AppButton
                 variant="outline"
                 w="full"

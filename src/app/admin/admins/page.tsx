@@ -5,17 +5,7 @@ import AppCard from "@/components/app-card";
 import AppDataTable from "@/components/app-table";
 import Loader from "@/components/loader";
 import Header from "@/components/nav/header";
-import { reformData } from "@/utils";
-import { generalFormElementStyle } from "@/utils/styles";
-import { SearchIcon } from "@chakra-ui/icons";
-import {
-  Flex,
-  Box,
-  Text,
-  InputGroup,
-  InputLeftElement,
-  Input,
-} from "@chakra-ui/react";
+import { Flex, Text } from "@chakra-ui/react";
 import React, { useState } from "react";
 import CreateAdmin from "./components/create-admin";
 import { useFetchAllAdmins } from "@/services/queries/admin";

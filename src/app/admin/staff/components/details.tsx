@@ -32,8 +32,6 @@ const Details = ({
       footer={
         <Flex
           alignItems="center"
-          justifyContent="space-between"
-          gap={4}
           w="full"
         >
           <AppButton

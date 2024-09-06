@@ -56,38 +56,41 @@ const CreateCategory = ({ isOpen, setIsOpen }: PropType) => {
 
   return (
     <SideDrawer header="Create Category" isOpen={isOpen} setIsOpen={setIsOpen}>
-      <form onSubmit={handleSubmit(submit)}>
-            <Flex flexDir={"column"} gap={8} px={"1rem"} mt={"2rem"}>
-              <AppInput
-                isRequired
-                id="Name"
-                label="Name"
-                placeholder="Enter name"
-                {...register("name")}
-                errorMessage={errors.name?.message}
-              />
-              <AppInput
-                id="description"
-                label="Description"
-                placeholder="Enter description"
-                {...register("description")}
-                errorMessage={errors.description?.message}
-              />
-            <Flex mt={"16rem"} px={"2rem"} justify={"space-between"}>
-              <AppButton
-                variant="outline"
-                w="full"
-                backgroundColor="bg.red"
-                hoverBackgroundColor="bg.darkRed"
-                onClick={() => cancel()}
-              >
-                Cancel
-              </AppButton>
-              <AppButton type="submit" w="full" loading={isLoading}>
-                Submit
-              </AppButton>
-            </Flex>
+      <form
+        onSubmit={handleSubmit(submit)}
+        style={{ height: "100%", display: "flex", flexDirection: "column" }}
+      >
+        <Flex flexDir={"column"} gap={8} px={"1rem"} mt={"2rem"} flex="1">
+          <AppInput
+            isRequired
+            id="Name"
+            label="Name"
+            placeholder="Enter name"
+            {...register("name")}
+            errorMessage={errors.name?.message}
+          />
+          <AppInput
+            id="description"
+            label="Description"
+            placeholder="Enter description"
+            {...register("description")}
+            errorMessage={errors.description?.message}
+          />
+          <Flex mt={"16rem"} px={"2rem"} justify={"space-between"} pb="1rem">
+            <AppButton
+              variant="outline"
+              w="full"
+              backgroundColor="bg.red"
+              hoverBackgroundColor="bg.darkRed"
+              onClick={() => cancel()}
+            >
+              Cancel
+            </AppButton>
+            <AppButton type="submit" w="full" loading={isLoading}>
+              Submit
+            </AppButton>
           </Flex>
+        </Flex>
       </form>
     </SideDrawer>
   );

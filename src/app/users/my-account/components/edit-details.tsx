@@ -2,18 +2,16 @@ import { Flex } from "@chakra-ui/react";
 import TableDrawer from "@/components/popups/tableDrawer";
 import AppButton from "@/components/app-button";
 import AppInput from "@/components/app-input";
-import { useGenericForm } from "@/hooks/form";
 import { EditDetailsSchema } from "@/schema";
 import { EditDetailsType } from "@/types/account";
 import { useEffect } from "react";
-import AppSelect from "@/components/app-select";
-import { Gender } from "@/utils/enums";
 import ImageIconInput from "@/components/image-icon-input";
 import { Resolver, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import urls from "@/services/urls";
 import axios from "@/services/axios";
 import toast from "react-hot-toast";
+import { useQueryClient } from "@tanstack/react-query";
 
 type PropType = {
   isOpen: boolean;
@@ -22,6 +20,7 @@ type PropType = {
 };
 
 const EditDetails = ({ isOpen, setIsOpen, data }: PropType) => {
+  const queryClient = useQueryClient();
   const handleClose = () => {
     setIsOpen(false);
   };
@@ -97,6 +96,8 @@ const EditDetails = ({ isOpen, setIsOpen, data }: PropType) => {
         toast.success(result?.data.message || "Profile updated successfully!");
         setIsOpen(false);
         formHook.reset();
+
+        queryClient.invalidateQueries(["fetchUserProfile"]);
         return;
       }
     } catch (err: any) {
@@ -111,13 +112,17 @@ const EditDetails = ({ isOpen, setIsOpen, data }: PropType) => {
       handleClose={handleClose}
       header={"Edit Details"}
     >
-      <form onSubmit={handleSubmit(handleUpdate)}>
+      <form
+        onSubmit={handleSubmit(handleUpdate)}
+        style={{ height: "100%", display: "flex", flexDirection: "column" }}
+      >
         <Flex
           gap={4}
           flexDir="column"
           px="1.5rem"
           fontSize="1.1rem"
           fontWeight={500}
+          flex={"1"}
         >
           <ImageIconInput title={"profileImgUrl"} handler={formHook} />
           <AppInput
@@ -174,9 +179,12 @@ const EditDetails = ({ isOpen, setIsOpen, data }: PropType) => {
             }}
           /> */}
           <Flex
+            mt={"8rem"}
             alignItems="center"
             justifyContent="space-between"
-            /*gap={4}*/ w="full"
+            /*gap={4}*/
+            w="full"
+            pb="1rem"
           >
             <AppButton
               w="full"

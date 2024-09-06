@@ -56,13 +56,12 @@ const ChangePassword = ({ isOpen, setIsOpen }: PropType) => {
   };
 
   return (
-    <SideDrawer
-        header="Change Password"
-        isOpen={isOpen}
-        setIsOpen={setIsOpen}
+    <SideDrawer header="Change Password" isOpen={isOpen} setIsOpen={setIsOpen}>
+      <form
+        onSubmit={handleSubmit(submit)}
+        style={{ height: "100%", display: "flex", flexDirection: "column" }}
       >
-      <form onSubmit={handleSubmit(submit)}>
-        <Flex flexDir={"column"} gap={8} px={"1rem"} mt={"2rem"}>
+        <Flex flexDir={"column"} gap={8} px={"1rem"} mt={"2rem"} flex={"1"}>
           <AppInput
             id="oldPassword"
             type="password"
@@ -95,6 +94,7 @@ const ChangePassword = ({ isOpen, setIsOpen }: PropType) => {
           alignItems={"center"}
           w={"full"}
           px={4}
+          pb="1rem"
         >
           <AppButton
             variant="outline"

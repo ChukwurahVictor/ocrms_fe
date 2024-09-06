@@ -24,7 +24,10 @@ const EditComplaint = ({data}: {data: any}) => {
     }
 
     return (
-      <form onSubmit={handleSubmit(handleEdit)}>
+      <form
+        onSubmit={handleSubmit(handleEdit)}
+        style={{ height: "100%", display: "flex", flexDirection: "column" }}
+      >
         <Flex
           gap={4}
           flexDir="column"
@@ -32,6 +35,7 @@ const EditComplaint = ({data}: {data: any}) => {
           color="text.blue"
           fontSize="1.1rem"
           fontWeight={500}
+          flex={"1"}
         >
           <AppInput
             id="requestedBy"

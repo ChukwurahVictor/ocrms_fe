@@ -9,7 +9,7 @@ import { useEditStaffMutation } from '@/services/mutations/staff.mutation';
 import { useFetchAllDepartments } from '@/services/queries/department';
 import { DepartmentType, EditStaffType } from '@/types';
 import { Flex } from '@chakra-ui/react';
-import React from 'react'
+import React, { useEffect } from 'react'
 import toast from 'react-hot-toast';
 
 type PropType = {
@@ -32,6 +32,15 @@ const EditStaff = ({ isOpen, setIsOpen, data }: PropType) => {
      email: data?.email,
      departmentId: data?.departmentId,
    });
+
+   useEffect(() => {
+     if (data) {
+       setValue("firstName", data?.firstName);
+       setValue("lastName", data?.lastName);
+       setValue("email", data?.email);
+       setValue("departmentId", data?.departmentId);
+     }
+   }, [data, setValue]);
 
   const {
     data: departments,

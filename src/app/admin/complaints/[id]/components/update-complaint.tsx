@@ -80,11 +80,14 @@ const UpdateComplaint = ({ isOpen, setIsOpen, complaintId }: PropType) => {
 
   return (
     <SideDrawer header="Update Complaint" isOpen={isOpen} setIsOpen={setIsOpen}>
-      <form onSubmit={handleSubmit(submit)}>
+      <form
+        onSubmit={handleSubmit(submit)}
+        style={{ height: "100%", display: "flex", flexDirection: "column" }}
+      >
         {loading && <Loader />}
         {isSuccess && (
           <>
-            <Flex flexDir={"column"} gap={8} px={"1rem"} mt={"2rem"}>
+            <Flex flexDir={"column"} gap={8} px={"1rem"} mt={"2rem"} flex={"1"}>
               <AppSelect
                 label="Status"
                 placeholder="Select Status"
@@ -125,7 +128,7 @@ const UpdateComplaint = ({ isOpen, setIsOpen, complaintId }: PropType) => {
                 }}
               />
             </Flex>
-            <Flex mt={"12rem"} px={"2rem"} justify={"space-between"}>
+            <Flex mt={"12rem"} px={"2rem"} justify={"space-between"} pb="1rem">
               <AppButton
                 variant="outline"
                 w="full"

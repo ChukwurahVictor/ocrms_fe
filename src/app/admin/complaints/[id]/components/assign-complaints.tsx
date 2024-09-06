@@ -68,11 +68,14 @@ const AssignComplaint = ({ isOpen, setIsOpen, complaintId }: PropType) => {
 
   return (
     <SideDrawer header="Assign Complaint" isOpen={isOpen} setIsOpen={setIsOpen}>
-      <form onSubmit={handleSubmit(submit)}>
+      <form
+        onSubmit={handleSubmit(submit)}
+        style={{ height: "100%", display: "flex", flexDirection: "column" }}
+      >
         {loading && <Loader />}
         {isSuccess && (
           <>
-            <Flex flexDir={"column"} gap={8} px={"1rem"} mt={"2rem"}>
+            <Flex flexDir={"column"} gap={8} px={"1rem"} mt={"2rem"} flex={"1"}>
               <AppSelect
                 label="Assign To"
                 placeholder="Select Department"
@@ -83,7 +86,7 @@ const AssignComplaint = ({ isOpen, setIsOpen, complaintId }: PropType) => {
                 }}
               />
             </Flex>
-            <Flex mt={"24rem"} px={"2rem"} justify={"space-between"}>
+            <Flex mt={"24rem"} px={"2rem"} justify={"space-between"} pb="1rem">
               <AppButton
                 variant="outline"
                 w="full"

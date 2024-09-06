@@ -6,8 +6,6 @@ import { Flex } from "@chakra-ui/react";
 import { CreateAdminType } from "@/types";
 import AppButton from "@/components/app-button";
 import AppInput from "@/components/app-input";
-import AppSelect from "@/components/app-select";
-import Loader from "@/components/loader";
 import SideDrawer from "@/components/popups/sideDrawer";
 import { useGenericForm } from "@/hooks/form";
 import { CreateAdminSchema, CreateStaffSchema } from "@/schema";
@@ -59,49 +57,52 @@ const CreateAdmin = ({ isOpen, setIsOpen }: PropType) => {
 
   return (
     <SideDrawer header="Create Admin" isOpen={isOpen} setIsOpen={setIsOpen}>
-      <form onSubmit={handleSubmit(submit)}>
-          <>
-            <Flex flexDir={"column"} gap={8} px={"1rem"} mt={"2rem"}>
-              <AppInput
-                id="firstName"
-                label="First Name"
-                placeholder="Enter first name"
-                isRequired
-                {...register("firstName")}
-                errorMessage={errors.firstName?.message}
-              />
-              <AppInput
-                id="lastName"
-                label="Last Name"
-                placeholder="Enter last name"
-                isRequired
-                {...register("lastName")}
-                errorMessage={errors.lastName?.message}
-              />
-              <AppInput
-                id="email"
-                label="Email"
-                placeholder="Enter email"
-                isRequired
-                {...register("email")}
-                errorMessage={errors.email?.message}
-              />
-            </Flex>
-            <Flex mt={"6rem"} px={"2rem"} justify={"space-between"}>
-              <AppButton
-                variant="outline"
-                w="full"
-                backgroundColor="bg.red"
-                hoverBackgroundColor="bg.darkRed"
-                onClick={() => cancel()}
-              >
-                Cancel
-              </AppButton>
-              <AppButton type="submit" w="full" loading={isLoading}>
-                Submit
-              </AppButton>
-            </Flex>
-          </>
+      <form
+        onSubmit={handleSubmit(submit)}
+        style={{ height: "100%", display: "flex", flexDirection: "column" }}
+      >
+        <>
+          <Flex flexDir={"column"} gap={8} px={"1rem"} mt={"2rem"} flex={"1"}>
+            <AppInput
+              id="firstName"
+              label="First Name"
+              placeholder="Enter first name"
+              isRequired
+              {...register("firstName")}
+              errorMessage={errors.firstName?.message}
+            />
+            <AppInput
+              id="lastName"
+              label="Last Name"
+              placeholder="Enter last name"
+              isRequired
+              {...register("lastName")}
+              errorMessage={errors.lastName?.message}
+            />
+            <AppInput
+              id="email"
+              label="Email"
+              placeholder="Enter email"
+              isRequired
+              {...register("email")}
+              errorMessage={errors.email?.message}
+            />
+          </Flex>
+          <Flex mt={"6rem"} px={"2rem"} justify={"space-between"} pb="1rem">
+            <AppButton
+              variant="outline"
+              w="full"
+              backgroundColor="bg.red"
+              hoverBackgroundColor="bg.darkRed"
+              onClick={() => cancel()}
+            >
+              Cancel
+            </AppButton>
+            <AppButton type="submit" w="full" loading={isLoading}>
+              Submit
+            </AppButton>
+          </Flex>
+        </>
       </form>
     </SideDrawer>
   );

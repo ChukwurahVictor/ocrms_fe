@@ -87,25 +87,11 @@ const Complaints = () => {
         >
           Complaints Order
         </Text>
-        {/* <AppInput
-          id="admin-complaints_search"
-          placeholder="What are you looking for today?"
-          type="search"
-        /> */}
-        {/* <AppSelect
-          placeholder="Filter"
-          options={[
-            { label: "Open", value: "open" },
-            { label: "In Progress", value: "in-progress" },
-            { label: "On Hold", value: "on-hold" },
-          ]}
-        /> */}
       </Flex>
       {loading && <Loader />}
       {success && (
         <Flex
           gap={2}
-          // alignItems="center"
           justifyContent="space-between"
           flexWrap="wrap"
           w="full"
