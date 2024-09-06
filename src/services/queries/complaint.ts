@@ -5,7 +5,6 @@ import urls from "../urls";
 export const useFetchAllComplaints = () => {
   return useQuery(["fetchAllComplaints"], async () => {
     const { data } = await axios.get(urls.complaints);
-    console.log("res", data);
     return data.data;
   });
 };
@@ -13,7 +12,6 @@ export const useFetchAllComplaints = () => {
 export const useFetchComplaint = (id: string) => {
   return useQuery(["fetchComplaint"], async () => {
     const { data } = await axios.get(urls.fetchComplaint(id));
-    console.log("data: ", data);
     return data.data;
   });
 };

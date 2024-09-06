@@ -30,7 +30,6 @@ const CreateDepartment = ({ isOpen, setIsOpen }: PropType) => {
   });
 
   const submit = async (data: any) => {
-    console.log(data);
     const result = await createDepartment(data);
 
     try {
@@ -38,7 +37,6 @@ const CreateDepartment = ({ isOpen, setIsOpen }: PropType) => {
         return;
       }
       if (result) {
-        console.log('result', result);
         toast.success(result?.message || "Department created successfully!");
         setIsOpen(false);
         reset();

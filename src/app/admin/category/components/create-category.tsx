@@ -36,7 +36,6 @@ const CreateCategory = ({ isOpen, setIsOpen }: PropType) => {
   };
 
   const submit = async (data: any) => {
-    console.log(data);
     const result = await createCategory(data);
 
     try {
@@ -44,7 +43,6 @@ const CreateCategory = ({ isOpen, setIsOpen }: PropType) => {
         return;
       }
       if (result) {
-        console.log("result", result);
         toast.success(result?.message || "Category created successfully!");
         setIsOpen(false);
         reset();

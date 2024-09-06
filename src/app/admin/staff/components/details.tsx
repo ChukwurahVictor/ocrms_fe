@@ -36,9 +36,6 @@ const Details = ({
           gap={4}
           w="full"
         >
-          {/* <AppButton w="full" onClick={() => setIsEditing(!isEditing)}>
-            {isEditing ? "Update details" : "Edit"}
-          </AppButton> */}
           <AppButton
             w="full"
             backgroundColor="bg.red"
@@ -50,7 +47,7 @@ const Details = ({
         </Flex>
       }
     >
-      {isEditing ? <EditStaff data={data} /> : <ViewStaff data={data} />}
+      {isEditing ? <EditStaff data={data} isOpen={isOpen} setIsOpen={setIsOpen} /> : <ViewStaff data={data} />}
     </TableDrawer>
   );
 };

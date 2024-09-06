@@ -2,24 +2,22 @@
 
 import { Box, Flex } from "@chakra-ui/react";
 import { ReactNode, useState } from "react";
-import { FiHome, FiUser, FiBriefcase, FiSettings } from "react-icons/fi";
-import { IoNotifications } from "react-icons/io5";
-import { MdStickyNote2 } from "react-icons/md";
+import { FiUser, FiSettings } from "react-icons/fi";
+import { MdDashboard, MdStickyNote2, MdGroups2 } from "react-icons/md";
+import { RiAdminFill } from "react-icons/ri";
+import { BiCategory } from "react-icons/bi";
 import SideBar from "@/components/nav/sidebar";
 
 const AdminLayout = ({ children }: { children: ReactNode }) => {
   const userObj =
     typeof window !== "undefined" &&
     JSON.parse(window.sessionStorage.getItem("userData") as string);
-
-  console.log('user', userObj);
-  console.log('user', userObj?.userRole);
   
   const UserNavItems: any[] = [
     {
       label: "Dashboard",
       path: "/admin/dashboard",
-      icon: FiHome,
+      icon: MdDashboard,
     },
     {
       label: "Complaints",
@@ -29,7 +27,7 @@ const AdminLayout = ({ children }: { children: ReactNode }) => {
     {
       label: "Departments",
       path: "/admin/departments",
-      icon: FiUser,
+      icon: MdGroups2,
     },
     {
       label: "Staff",
@@ -41,19 +39,14 @@ const AdminLayout = ({ children }: { children: ReactNode }) => {
           {
             label: "Admin",
             path: "/admin/admins",
-            icon: FiUser,
+            icon: RiAdminFill,
           },
         ]
       : []),
     {
       label: "Categories",
       path: "/admin/category",
-      icon: FiSettings,
-    },
-    {
-      label: "Notifications",
-      path: "/admin/notifications",
-      icon: IoNotifications,
+      icon: BiCategory,
     },
     {
       label: "Settings",
@@ -61,13 +54,6 @@ const AdminLayout = ({ children }: { children: ReactNode }) => {
       icon: FiSettings,
     },
   ];
-  // if (userObj.role === "Admin") {
-  //   UserNavItems.push({
-  //     label: "Admin",
-  //     path: "/admin/admin",
-  //     icon: FiUser,
-  //   });
-  // }
 
   const [navSize, changeNavSize] = useState("large");
 

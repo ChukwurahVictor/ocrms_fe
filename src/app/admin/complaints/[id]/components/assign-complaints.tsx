@@ -45,7 +45,6 @@ const AssignComplaint = ({ isOpen, setIsOpen, complaintId }: PropType) => {
         return;
       }
       if (result) {
-        console.log("result", result);
         toast.success("Complaint assigned successfully!");
         setIsOpen(false);
         reset();

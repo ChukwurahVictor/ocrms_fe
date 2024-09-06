@@ -80,13 +80,13 @@ const Dashboard = () => {
       )}
       <Flex
         gap={4}
-        alignItems="center"
-        justifyContent="space-between"
+        alignItems="end"
+        justifyContent="flex-end"
         w="100%"
         my={8}
         px={2}
       >
-        <AppInput
+        {/* <AppInput
           id="admin-complaints_search"
           placeholder="What are you looking for today?"
           type="search"
@@ -98,10 +98,10 @@ const Dashboard = () => {
             { label: "In Progress", value: "in-progress" },
             { label: "On Hold", value: "on-hold" },
           ]}
-        />
+        /> */}
         <AppButton onClick={() => {
           router.push('/users/dashboard/create-complaint')
-        }} width={'27rem'}>Create New Complaint</AppButton>
+        }} w="full">Create New Complaint</AppButton>
       </Flex>
       <Box my="2rem" px={2}>
         <AppDataTable

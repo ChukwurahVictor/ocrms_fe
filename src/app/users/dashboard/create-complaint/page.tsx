@@ -1,27 +1,21 @@
 'use client';
 
-import { useState } from 'react';
 import AppButton from '@/components/app-button';
 import AppInput from '@/components/app-input';
 import AppSelect from '@/components/app-select';
-import ImageInput from '@/components/image-input';
 import Header from '@/components/nav/header'
-import { useGenericForm } from '@/hooks/form';
 import { CreateComplaintSchema } from '@/schema';
 import axios from '@/services/axios';
 import { useCreateComplaintMutation } from '@/services/mutations/complaint.mutation';
 import { useFetchAllCategory } from '@/services/queries/category';
 import urls from '@/services/urls';
 import { CreateComplaintType } from '@/types/complaint';
-import { loadOptions, reformData } from '@/utils';
 import { Flex, Grid, Text } from '@chakra-ui/react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useRouter } from 'next/navigation';
 import React, { useMemo } from 'react'
 import { Resolver, useForm } from 'react-hook-form';
 import toast from "react-hot-toast";
-import { Console } from 'console';
-import ImageUploader from '@/components/image-uploader';
 import ImageIconInput from '@/components/image-icon-input';
 
 const CreateComplaint = () => {
@@ -206,12 +200,10 @@ const CreateComplaint = () => {
         return;
       }
       if (result) {
-        console.log("result", result);
         toast.success(result?.data?.message || "Complaint created Successfully!");
         return router.push("/users/dashboard");
       }
     } catch (error: any) {
-      console.log("error", error);
       toast.error(error?.message || "An error occurred");
       throw new Error(error);
     }

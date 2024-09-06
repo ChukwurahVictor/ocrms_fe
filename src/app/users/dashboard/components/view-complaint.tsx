@@ -12,7 +12,6 @@ import {
 import Image from "next/image";
 
 const ViewComplaint = ({ data }: { data: any }) => {
-  console.log('data:', data);
   return (
     <>
       <Tabs py={5}>

@@ -40,14 +40,12 @@ const Login = () => {
   } = formHook;
 
   const submit: SubmitHandler<LoginType> = async (data: LoginType) => {
-    console.log(data);
     const result = await login(data);
     try {
       if (!result) {
         return;
       }
       if (result) {
-        console.log('result', result);
         toast.success(result?.message || "Login Successful!");
         sessionStorage.setItem("userData", JSON.stringify(result?.data));
 
@@ -61,7 +59,6 @@ const Login = () => {
         }
       }
     } catch (error: any) {
-      console.log('error', error);
       toast.error(error?.message || "An error occurred");
       // ErrorToast(error?.message || "An error occurred");
       throw new Error(error);

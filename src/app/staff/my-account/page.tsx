@@ -14,7 +14,6 @@ const StaffAccount = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const { data, isLoading, isSuccess } = useFetchUserProfile();
-  console.log(data);
   return (
     <>
       <Flex borderBottom="8px solid #F4F4F4">
@@ -60,7 +59,6 @@ const StaffAccount = () => {
             <AppButton
               width="16px"
               onClick={() => {
-                console.log("Clicked");
                 setIsOpen(true);
               }}
             >

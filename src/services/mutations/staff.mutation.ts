@@ -20,3 +20,21 @@ export const useCreateStaffMutation = () => {
     }
   );
 };
+
+export const useEditStaffMutation = (id: string) => {
+  const queryClient = useQueryClient();
+  return useMutation(
+    ["editStaff"],
+    async (staff: CreateStaffType) => {
+      const res = await axios.patch(urls.fetchStaff(id), staff);
+      return res.data;
+    },
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries({
+          queryKey: ["fetchAllStaff"],
+        });
+      },
+    }
+  );
+};

@@ -7,17 +7,7 @@ import { useAdminStaffColumns } from "@/components/app-table/columns/admin-staff
 import Loader from "@/components/loader";
 import Header from "@/components/nav/header";
 import { useFetchAllStaff } from "@/services/queries/staff";
-import { reformData } from "@/utils";
-import { generalFormElementStyle } from "@/utils/styles";
-import { SearchIcon } from "@chakra-ui/icons";
-import {
-  Flex,
-  Box,
-  Text,
-  InputGroup,
-  InputLeftElement,
-  Input,
-} from "@chakra-ui/react";
+import { Flex, Text } from "@chakra-ui/react";
 import React, { useState } from "react";
 import CreateStaff from "./components/create-staff";
 import Details from "./components/details";
@@ -74,30 +64,13 @@ const Staff = () => {
               <AppCard key={index} title={item.title} count={item.count} />
             ))}
           </Flex>
-          <Flex alignItems={"center"} gap={8}>
-            <InputGroup>
-              <InputLeftElement pointerEvents="none">
-                <SearchIcon color="#525252" />
-              </InputLeftElement>
-              <Input
-                placeholder="Search"
-                width={"50%"}
-                style={{ ...generalFormElementStyle }}
-                _placeholder={{
-                  fontSize: "12px",
-                  color: "#A8A8A8",
-                  pl: "2rem",
-                }}
-                type="search"
-                pl="4rem"
-              />
-            </InputGroup>
+          <Flex alignItems={"end"} justifyContent={"flex-end"} gap={8}>
             <AppButton onClick={() => setIsAddOpen(true)}>
               Create New Staff
             </AppButton>
           </Flex>
-          <Flex flexDir={'column'} m={"auto"} w="100%" mt={"1rem"}>
-            <AppDataTable columns={tableColumns} data={staff} pagination/>
+          <Flex flexDir={"column"} m={"auto"} w="100%" mt={"1rem"}>
+            <AppDataTable columns={tableColumns} data={staff} pagination />
           </Flex>
         </Flex>
       )}

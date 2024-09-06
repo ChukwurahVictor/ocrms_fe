@@ -15,6 +15,7 @@ import { RxDashboard } from "react-icons/rx";
 import { IoNotifications } from "react-icons/io5";
 import { GrNotes } from "react-icons/gr";
 import { MdStickyNote2 } from "react-icons/md";
+import { MdDashboard } from "react-icons/md";
 
 import Navbar from "@/components/nav";
 import SideBar from "@/components/nav/sidebar";
@@ -24,18 +25,18 @@ const UserLayout = ({ children }: { children: ReactNode }) => {
     {
       label: "Dashboard",
       path: "/users/dashboard",
-      icon: RxDashboard,
+      icon: MdDashboard,
     },
     {
       label: "My Account",
       path: "/users/my-account",
       icon: MdStickyNote2,
     },
-    {
-      label: "Notifications",
-      path: "/users/notifications",
-      icon: IoNotifications,
-    },
+    // {
+    //   label: "Notifications",
+    //   path: "/users/notifications",
+    //   icon: IoNotifications,
+    // },
     {
       label: "Settings",
       path: "/users/settings",

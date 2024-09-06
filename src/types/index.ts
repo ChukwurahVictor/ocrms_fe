@@ -91,6 +91,7 @@ export enum SortDirection {
 }
 
 export type DepartmentType = {
+  id?:string;
   name: string;
   description?: string;
   // status?: boolean;
@@ -113,6 +114,13 @@ export type CreateStaffType = {
   lastName: string;
   departmentId: string;
   email: string;
+};
+
+export type EditStaffType = {
+  firstName?: string;
+  lastName?: string;
+  departmentId?: string;
+  email?: string;
 };
 
 export type StaffType = {

@@ -86,8 +86,15 @@ export const EditDetailsSchema = Yup.object().shape({
 export const CreateStaffSchema = Yup.object().shape({
   firstName: Yup.string().trim().required('First name is required.'),
   lastName: Yup.string().trim().required('Last name is required.'),
-  email: Yup.string().email("Invalid email!").trim(),
-  departmentId: Yup.string().trim(),
+  email: Yup.string().email("Invalid email!").trim().required('Email is required.'),
+  departmentId: Yup.string().trim().required('Department is required.'),
+});
+
+export const EditStaffSchema = Yup.object().shape({
+  firstName: Yup.string().trim().notRequired(),
+  lastName: Yup.string().trim().notRequired(),
+  email: Yup.string().email("Invalid email!").trim().notRequired(),
+  departmentId: Yup.string().trim().notRequired(),
 });
 
 export const CreateAdminSchema = Yup.object().shape({

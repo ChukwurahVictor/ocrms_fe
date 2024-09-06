@@ -37,8 +37,6 @@ const AddFeedback = ({ data, setIsOpen, setIsEditing }: PropType) => {
   };
 
   const onSubmit = async (formData: any) => {
-    console.log(formData);
-
     const result = await addFeedback(formData);
 
     try {
@@ -46,7 +44,6 @@ const AddFeedback = ({ data, setIsOpen, setIsEditing }: PropType) => {
         return;
       }
       if (result) {
-        console.log("result", result);
         toast.success(result?.message || "Feedback added successfully!");
         setIsOpen(false);
         setIsEditing(false);

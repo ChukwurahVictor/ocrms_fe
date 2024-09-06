@@ -60,7 +60,6 @@ const Complaints = () => {
     useFetchComplaintSummary();
 
   const handleAction = (action: string, row: any) => {
-    console.log(row);
     if (action === "View") {
       router.push(`complaints/${row.id}`)
     }

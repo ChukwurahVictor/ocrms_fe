@@ -1,6 +1,5 @@
 "use client";
 
-import themes from "@/utils/themes";
 import { Box, Flex, Text } from "@chakra-ui/react";
 import React from "react";
 import toast from "react-hot-toast";
@@ -8,7 +7,6 @@ import { useForm, SubmitHandler, Resolver } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { RequestResetPasswordSchema } from "@/schema";
 import AppInput from "@/components/app-input";
-import Link from "next/link";
 import AppButton from "@/components/app-button";
 import {
     useRequestResetPasswordMutation,
@@ -40,16 +38,12 @@ const RequestResetPassword = () => {
     data: RequestResetPasswordType
   ) => {
     const result = await requestResetPassword(data);
-    console.log("result", result);
     try {
       if (!result) {
         return;
       }
       if (result) {
         toast.success(result.message || "Password Reset Successful!");
-        // if (result.result.user.isAdmin) {
-        //   return router.push("/admin/dashboard");
-        // }
         return router.push("/auth/login");
       }
     } catch (error: any) {

@@ -31,11 +31,11 @@ const StaffLayout = ({ children }: { children: ReactNode }) => {
         path: "/staff/my-account",
         icon: MdStickyNote2,
       },
-      {
-        label: "Notifications",
-        path: "/staff/notifications",
-        icon: IoNotifications,
-      },
+      // {
+      //   label: "Notifications",
+      //   path: "/staff/notifications",
+      //   icon: IoNotifications,
+      // },
       {
         label: "Settings",
         path: "/staff/settings",

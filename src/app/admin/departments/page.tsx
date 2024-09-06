@@ -4,11 +4,9 @@ import React, { useState } from "react";
 import { TableColumn } from "react-data-table-component";
 
 import AppTable from "@/components/app-table";
-import { Box, Flex, Text, InputGroup, InputLeftElement, Input, Select } from "@chakra-ui/react";
+import { Box, Flex, Text } from "@chakra-ui/react";
 import { useFetchAllDepartments } from "@/services/queries/department";
 import AppCard from "@/components/app-card";
-import { SearchIcon } from "@chakra-ui/icons";
-import { generalFormElementStyle } from "@/utils/styles";
 import AppButton from "@/components/app-button";
 import Header from "@/components/nav/header";
 import Loader from "@/components/loader";
@@ -31,7 +29,6 @@ const Department = () => {
    const tableColumns = useAdminDepartmentsColumns(handleAction);
 
   const { data: departments, isLoading, isSuccess } = useFetchAllDepartments();
-  console.log('departments', departments);
 
   const cardData = [
     {
@@ -72,24 +69,7 @@ const Department = () => {
               <AppCard key={index} title={item.title} count={item.count} />
             ))}
           </Flex>
-          <Flex alignItems={"center"} gap={8}>
-            <InputGroup>
-              <InputLeftElement pointerEvents="none">
-                <SearchIcon color="#525252" />
-              </InputLeftElement>
-              <Input
-                placeholder="Search"
-                width={"50%"}
-                style={{ ...generalFormElementStyle }}
-                _placeholder={{
-                  fontSize: "12px",
-                  color: "#A8A8A8",
-                  pl: "2rem",
-                }}
-                type="search"
-                pl="4rem"
-              />
-            </InputGroup>
+          <Flex alignItems={"end"} justifyContent={"flex-end"} gap={8}>
             <AppButton onClick={() => setIsAddOpen(true)}>
               Create New Department
             </AppButton>

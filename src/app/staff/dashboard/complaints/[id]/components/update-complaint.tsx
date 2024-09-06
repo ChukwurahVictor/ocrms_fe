@@ -42,7 +42,6 @@ const UpdateComplaint = ({ isOpen, setIsOpen, complaintId }: PropType) => {
 
   const submit = async (data: any) => {
     const { priorityLevel, categoryId, status, ...rest } = data;
-    console.log(data);
 
     const filteredData = {
       ...rest,
@@ -57,7 +56,6 @@ const UpdateComplaint = ({ isOpen, setIsOpen, complaintId }: PropType) => {
         return;
       }
       if (result) {
-        console.log("result", result);
         toast.success("Complaint updated successfully!");
         setIsOpen(false);
         reset();

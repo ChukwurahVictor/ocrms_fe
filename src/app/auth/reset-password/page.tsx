@@ -41,7 +41,6 @@ const ResetPassword = () => {
   ) => {
     const { confirmNewPassword, ...rest } = data;
     const result = await resetPassword(rest);
-    console.log("result", result);
     try {
       if (!result) {
         return;

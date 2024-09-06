@@ -24,17 +24,11 @@ const AddComplaint = ({ isOpen, setIsOpen }: PropType) => {
       register,
       handleSubmit,
       setValue,
+      reset,
       formState: { errors },
     } = formHook;
-//   const { register, errors, handleSubmit, setValue, control, reset } = submit(
-//     createComplaintSchema
-//   );
-const reset = () =>{
-    alert('Reset clicked');
-}
 
   const onSubmit = (data: any) => {
-    console.log(data);
     setIsOpen(false);
     reset();
   };

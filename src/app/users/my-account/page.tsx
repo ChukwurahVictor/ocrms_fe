@@ -57,7 +57,6 @@ const Account = () => {
             <AppButton
               width="16px"
               onClick={() => {
-                console.log('Clicked');
                 setIsOpen(true);
               }}
             >

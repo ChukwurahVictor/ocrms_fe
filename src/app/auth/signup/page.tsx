@@ -41,7 +41,6 @@ const SignUp = () => {
   const submit: SubmitHandler<SignUpType> = async (data: SignUpType) => {
     const { confirmPassword, ...signupData } = data;
     const result = await signup(signupData);
-    console.log('result', result);
     try {
       if (!result) {
         return;

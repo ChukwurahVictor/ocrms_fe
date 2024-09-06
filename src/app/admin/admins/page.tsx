@@ -74,24 +74,7 @@ const Admin = () => {
               <AppCard key={index} title={item.title} count={item.count} />
             ))}
           </Flex>
-          <Flex alignItems={"center"} gap={8}>
-            <InputGroup>
-              <InputLeftElement pointerEvents="none">
-                <SearchIcon color="#525252" />
-              </InputLeftElement>
-              <Input
-                placeholder="Search"
-                width={"50%"}
-                style={{ ...generalFormElementStyle }}
-                _placeholder={{
-                  fontSize: "12px",
-                  color: "#A8A8A8",
-                  pl: "2rem",
-                }}
-                type="search"
-                pl="4rem"
-              />
-            </InputGroup>
+          <Flex alignItems={"end"} justifyContent={"flex-end"} gap={8}>
             <AppButton onClick={() => setIsAddOpen(true)}>
               Create New Admin
             </AppButton>

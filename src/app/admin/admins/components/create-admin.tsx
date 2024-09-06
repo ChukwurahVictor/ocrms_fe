@@ -39,7 +39,6 @@ const CreateAdmin = ({ isOpen, setIsOpen }: PropType) => {
   };
 
   const submit = async (data: any) => {
-    console.log(data);
     const result = await createAdmin(data);
 
     try {
@@ -47,7 +46,6 @@ const CreateAdmin = ({ isOpen, setIsOpen }: PropType) => {
         return;
       }
       if (result) {
-        console.log("result", result);
         toast.success(result?.message || "Staff created successfully!");
         setIsOpen(false);
         reset();

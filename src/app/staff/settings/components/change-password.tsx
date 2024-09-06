@@ -32,14 +32,12 @@ const ChangePassword = ({ isOpen, setIsOpen }: PropType) => {
 
   const submit = async (data: any) => {
     const { confirmNewPassword, ...rest } = data;
-    console.log(data);
     const result = await updatePassword(rest);
     try {
       if (!result) {
         return;
       }
       if (result) {
-        console.log("result", result);
         toast.success(
           result?.message || "Password changed Successfully!"
         );
@@ -47,7 +45,6 @@ const ChangePassword = ({ isOpen, setIsOpen }: PropType) => {
         reset();
       }
     } catch (error: any) {
-      console.log("error", error);
       toast.error(error?.message || "An error occurred");
       throw new Error(error);
     };
