@@ -45,7 +45,7 @@ const ViewComplaint = ({ data }: { data: any }) => {
               </Grid>
               <Grid templateColumns="1fr 2fr" alignItems="center" gap="1rem">
                 <Text color="text.blue">Status: </Text>
-                <AppStatus label={data?.status} />
+                <AppStatus label={data?.status} style={{ width: "7rem"}} />
               </Grid>
               <Grid templateColumns="1fr 2fr" alignItems="center" gap="1rem">
                 <Text color="text.blue">Assigned To: </Text>
@@ -53,7 +53,7 @@ const ViewComplaint = ({ data }: { data: any }) => {
               </Grid>
               <Grid
                 templateColumns="1fr 2fr"
-                /*alignItems="center"*/ gap="1rem"
+                gap="1rem"
                 lineHeight={"1.5rem"}
               >
                 <Text color="text.blue">Description: </Text>

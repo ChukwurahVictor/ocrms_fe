@@ -3,6 +3,7 @@ import TableDrawer from "@/components/popups/tableDrawer";
 import AppButton from "@/components/app-button";
 import ViewComplaint from "./view-complaint";
 import AddFeedback from "./add-feedback";
+import UpdateComplaint from "./update-complaint";
 
 type PropType = {
   isOpen: boolean;
@@ -22,7 +23,7 @@ const Details = ({ isOpen, setIsOpen, isEditing, setIsEditing, data }: PropType)
       <TableDrawer
         isOpen={isOpen}
         handleClose={handleClose}
-        header={isEditing ? "Add Feedback" : "Complaint Details"}
+        header={isEditing && data?.status =='Resolved' ? "Add Feedback" : isEditing ? "Update Complaint" : "Complaint Details"}
         footer={
           <Flex
             alignItems="center"
@@ -30,31 +31,44 @@ const Details = ({ isOpen, setIsOpen, isEditing, setIsEditing, data }: PropType)
             gap={4}
             w="full"
           >
-            {/* <AppButton w="full" onClick={() => setIsEditing(!isEditing)}>{isEditing ? "Update details" : "Edit"}</AppButton> */}
-            {data?.status == "Resolved" && !isEditing ? (
-              <AppButton w="full" onClick={() => setIsEditing(!isEditing)}>
-                Give Feedback
-              </AppButton>
-            ) : null}
             {!isEditing && (
-              <AppButton
-                w="full"
-                backgroundColor="bg.red"
-                hoverBackgroundColor="bg.darkRed"
-                onClick={() => handleClose()}
-              >
-                Close
-              </AppButton>
+              <>
+                {data?.status === "Resolved" ? (
+                  <AppButton w="full" onClick={() => setIsEditing(!isEditing)}>
+                    Give Feedback
+                  </AppButton>
+                ) : (
+                  <AppButton w="full" onClick={() => setIsEditing(!isEditing)}>
+                    Update Complaint
+                  </AppButton>
+                )}
+                <AppButton
+                  w="full"
+                  backgroundColor="bg.red"
+                  hoverBackgroundColor="bg.darkRed"
+                  onClick={() => handleClose()}
+                >
+                  Close
+                </AppButton>
+              </>
             )}
           </Flex>
         }
       >
         {isEditing ? (
-          <AddFeedback
-            data={data}
-            setIsOpen={setIsOpen}
-            setIsEditing={setIsEditing}
-          />
+          data?.status === "Resolved" ? (
+            <AddFeedback
+              data={data}
+              setIsOpen={setIsOpen}
+              setIsEditing={setIsEditing}
+            />
+          ) : (
+            <UpdateComplaint
+              data={data}
+              setIsOpen={setIsOpen}
+              setIsEditing={setIsEditing}
+            />
+          )
         ) : (
           <ViewComplaint data={data} />
         )}

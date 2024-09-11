@@ -4,6 +4,7 @@ import {
   FormControl,
   FormHelperText,
   FormLabel,
+  Icon,
   Input,
   SimpleGrid,
 } from "@chakra-ui/react";
@@ -34,7 +35,7 @@ const ImageInput: FC<IProps> = ({
   icon,
 }) => {
   const fileInput = useRef<HTMLInputElement | null>(null);
-  const [files, setFiles] = useState<File[]>([]);
+  const [file, setFile] = useState<File | undefined>();
   const [changed, setChanged] = useState(false);
   const {
     register,
@@ -44,35 +45,8 @@ const ImageInput: FC<IProps> = ({
     clearErrors,
     formState: { errors },
   } = handler;
-  const complaintImages = watch(title) as string[]; // Changed to handle multiple images
+  const profileImg = watch(title) as string;
   const errorMessage = errors[title]?.message?.toString();
-
-  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const selectedFiles = Array.from(e.target.files || []);
-    const maxFileSize = 1024; // 1MB
-
-    // Filter out files larger than the maximum file size
-    const validFiles = selectedFiles.filter(file => {
-      const fileSizeInKB = file.size / 1024;
-      if (fileSizeInKB > maxFileSize) {
-        setError(title, {
-          message: "Image cannot be larger than 1MB",
-        });
-        return false;
-      }
-      return true;
-    });
-
-    if (validFiles.length > 0) {
-      setFiles(validFiles);
-      setValue(title, validFiles)
-      clearErrors(title);
-      setChanged(true);
-    } else {
-      setFiles([]);
-      setValue(title, []);
-    }
-  };
 
   return (
     <FormControl isRequired={isRequired && isRequired} my="3rem">
@@ -85,44 +59,50 @@ const ImageInput: FC<IProps> = ({
           display={"none"}
           type="file"
           accept="image/jpg, image/jpeg, image/png, image/gif"
-          multiple // Allow multiple file selection
-          onChange={handleFileChange}
+          onChange={(e: ChangeEvent<HTMLInputElement>) => {
+            const image = e.target.files!;
+            const maxFileSize = 1024; // 1MB
+            const imageFileSize = image[0]?.size / 1024;
+            if (imageFileSize > maxFileSize) {
+              setFile(undefined);
+              setValue(title, undefined);
+              return setError(title, {
+                message: "Image cannot be larger than 1MB",
+              });
+            }
+            setValue(title, image?.[0]);
+            setFile(image?.[0]);
+            clearErrors(title);
+            setChanged(true);
+            if (imageFileSize > maxFileSize) {
+              setValue(title, undefined);
+              return setError(title, {
+                type: "custom",
+                message: "Image cannot be larger than 1MB.",
+              });
+            } else {
+              clearErrors(title);
+              setValue(title, image?.[0]);
+            }
+          }}
         />
-        {files.length > 0 || complaintImages.length > 0 ? (
+        {file || profileImg ? (
           <Flex
             justifyContent="space-between"
             alignItems="start"
             flexDir="column"
           >
-            {files.length > 0
-              ? files.map((file, index) => (
-                  <Image
-                    key={index}
-                    src={URL.createObjectURL(file)}
-                    alt={`image-${index}`}
-                    style={{
-                      height: "5rem",
-                      width: "auto",
-                      margin: "auto",
-                    }}
-                    width={100}
-                    height={100}
-                  />
-                ))
-              : complaintImages.map((img, index) => (
-                  <Image
-                    key={index}
-                    src={img}
-                    alt={`complaint-image-${index}`}
-                    style={{
-                      height: "5rem",
-                      width: "auto",
-                      margin: "auto",
-                    }}
-                    width={100}
-                    height={100}
-                  />
-                ))}
+            <Image
+              src={changed ? URL.createObjectURL(file as File) : profileImg}
+              alt="image"
+              style={{
+                height: "5rem",
+                width: "auto",
+                margin: "auto",
+              }}
+              width={100}
+              height={100}
+            />
             <Text
               onClick={() => fileInput.current?.click()}
               color="brand.primary"

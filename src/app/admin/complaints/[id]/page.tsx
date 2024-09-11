@@ -73,6 +73,7 @@ const ViewComplaint = () => {
             <TabList>
               <Tab>Details</Tab>
               <Tab>Media</Tab>
+              {data?.status == "Resolved" && <Tab>Feedbacks</Tab>}
             </TabList>
 
             <TabPanels>
@@ -131,8 +132,7 @@ const ViewComplaint = () => {
                     gap="1rem"
                   >
                     <Text color="text.blue">Status: </Text>
-                    <AppStatus label={data?.status} />
-                    {/* <Text>{data?.status}</Text> */}
+                    <AppStatus label={data?.status} style={{ width: "7rem" }} />
                   </Grid>
                   <Grid
                     templateColumns="1fr 2fr"
@@ -173,6 +173,35 @@ const ViewComplaint = () => {
                   <p>No Image to display.</p>
                 )}
               </TabPanel>
+              {data?.status == "Resolved" && (
+                <TabPanel>
+                  <Flex
+                    gap={6}
+                    flexDir="column"
+                    px="1.5rem"
+                    my="1rem"
+                    fontSize="1rem"
+                    fontWeight={500}
+                  >
+                    {data?.feedback?.length ? (
+                      data?.feedback?.map((feedback: any) => (
+                        <Grid
+                          templateColumns="1fr 2fr"
+                          key={feedback?.id}
+                          mt={1}
+                        >
+                          <Text color="text.blue">
+                            {feedback?.user?.firstName}:{" "}
+                          </Text>
+                          <Text lineHeight={"1.2"}>{feedback.comment}</Text>
+                        </Grid>
+                      ))
+                    ) : (
+                      <p>No Feedback to display.</p>
+                    )}
+                  </Flex>
+                </TabPanel>
+              )}
             </TabPanels>
           </Tabs>
         </>

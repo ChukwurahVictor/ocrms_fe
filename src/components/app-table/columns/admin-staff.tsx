@@ -3,6 +3,7 @@
 import { useMemo } from "react";
 import { TableColumn } from "react-data-table-component";
 import Action from "@/components/actions";
+import { AppStatus } from "@/components/app-status";
 
 type PropType = {
   handleAction: (_action: string, _row: any) => void;
@@ -27,7 +28,7 @@ export const useAdminStaffColumns = (
       },
       {
         name: "Status",
-        selector: row => (row?.status ? "Active" : "Inactive"),
+        selector: row => <AppStatus label={(row?.status ? "Active" : "Inactive")} />,
       },
       {
         name: "Actions",

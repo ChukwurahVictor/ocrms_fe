@@ -39,7 +39,7 @@ export const useAdminComplaintsColumns = (handleAction: PropType['handleAction']
         {
           name: "Status",
           cell: row => <AppStatus label={row?.status} />,
-          width: "5rem",
+          width: "8rem",
         },
         {
           name: "Actions",

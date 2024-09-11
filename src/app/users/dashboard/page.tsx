@@ -86,19 +86,6 @@ const Dashboard = () => {
         my={8}
         px={2}
       >
-        {/* <AppInput
-          id="admin-complaints_search"
-          placeholder="What are you looking for today?"
-          type="search"
-        />
-        <AppSelect
-          placeholder="Filter"
-          options={[
-            { label: "Open", value: "open" },
-            { label: "In Progress", value: "in-progress" },
-            { label: "On Hold", value: "on-hold" },
-          ]}
-        /> */}
         <AppButton onClick={() => {
           router.push('/users/dashboard/create-complaint')
         }} w="full">Create New Complaint</AppButton>

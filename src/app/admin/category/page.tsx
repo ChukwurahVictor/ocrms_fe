@@ -23,6 +23,7 @@ import CreateStaff from "./components/create-category";
 import { useAdminCategoryColumns } from "@/components/app-table/columns/admin-category";
 import CreateCategory from "./components/create-category";
 import { useFetchAllCategory } from "@/services/queries/category";
+import Details from "./components/details";
 
 const Category = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -104,13 +105,13 @@ const Category = () => {
         </Flex>
       )}
 
-      {/* <Details
+      <Details
         isOpen={isOpen}
         setIsOpen={setIsOpen}
         isEditing={isEditing}
         setIsEditing={setIsEditing}
         data={selected}
-      /> */}
+      />
       <CreateCategory isOpen={isAddOpen} setIsOpen={setIsAddOpen} />
     </Flex>
   );

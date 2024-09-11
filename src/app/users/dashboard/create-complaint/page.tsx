@@ -13,16 +13,16 @@ import { CreateComplaintType } from '@/types/complaint';
 import { Flex, Grid, Text } from '@chakra-ui/react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useRouter } from 'next/navigation';
-import React, { useMemo } from 'react'
+import React from 'react'
 import { Resolver, useForm } from 'react-hook-form';
 import toast from "react-hot-toast";
 import ImageIconInput from '@/components/image-icon-input';
+import ImageInput from '@/components/image-input';
 
 const CreateComplaint = () => {
   const router = useRouter();
   const createComplaintMutation = useCreateComplaintMutation();
   const { mutateAsync: createComplaint, isLoading } = createComplaintMutation;
-  // const [img, setImg] = useState<File[]>([])
 
   const formHook = useForm<CreateComplaintType>({
     resolver: yupResolver(CreateComplaintSchema),
@@ -31,7 +31,6 @@ const CreateComplaint = () => {
       description: "",
       categoryId: "",
       image: "",
-      // image: [],
     },
   } as { resolver: Resolver<CreateComplaintType> });
 
@@ -41,130 +40,10 @@ const CreateComplaint = () => {
     setValue,
     formState: { errors },
   } = formHook;
-
-  // const convertToBase64 = (file: File): Promise<string> => {
-  //   return new Promise((resolve, reject) => {
-  //     const reader = new FileReader();
-  //     reader.readAsDataURL(file);
-  //     reader.onload = () => resolve(reader.result as string);
-  //     reader.onerror = error => reject(error);
-  //   });
-  // };
-
-  // const handleImgChange = async(e: React.ChangeEvent<HTMLInputElement>) => {
-    // console.log(e.target.files);
-    // if (e.target.files) { 
-    //   // const base64Images = await Promise.all(
-    //   //   Array.from(e.target.files).map(file => convertToBase64(file))
-    //   // );
-
-    //   // setImg(Array.from(base64Images));
-    //   setImg(Array.from(e.target.files));
-    // }
-    // Array.from(e.target.files as any).forEach((file) => console.log(file))
-    // console.log(img);
-  // }
   
   const submit = async (data: CreateComplaintType) => {
-    // console.log(img);
-    console.log(data);
-    // console.log(data.images);
+    console.log('data', data);
     const formData = new FormData();
-    // console.log(data.images?.File[0])
-
-    // const urls: any = [];
-    // if (data?.images && Array.isArray(data?.images)) {
-      // const images = data?.images;
-      // data?.images.forEach((file, index) => {
-      //   // urls.push(file);
-      //   formData.append(`images`, file);
-      // });
-      // images.forEach((image, index) => {
-      //   formData.append(`images`, image); // Append each file individually
-      // });
-      // console.log('Gets Here.....................');
-      // formData.append(`images`, [...images]);
-    //   // console.log(urls);
-    //   // console.log(images);
-    // }
-
-    // if (data?.images && Array.isArray(data.images)) {
-    // Append each File object or Blob URL to FormData under the 'images' key
-
-    // async function getBlobFromURL(blobURL) {
-    //   const response = await fetch(blobURL);
-    //   return await response.blob();
-    // }
-
-    // async function processImages() {
-    //   const buffers = [];
-
-    //   for (let blobURL of data.images) {
-    //     if (blobURL.startsWith("blob:")) {
-    //       const blob = await getBlobFromURL(blobURL);
-
-    //       const reader = new FileReader();
-    //       reader.readAsArrayBuffer(blob);
-
-    //       reader.onloadend = () => {
-    //         const buffer = reader.result;
-    //         buffers.push(buffer);
-
-    //         buffers.forEach((buffer: any, index: any) => {
-    //           formData.append(`images[${index}]`, new Blob([buffer]));
-    //         });
-    //       };
-    //     } else {
-    //       console.error("Invalid Blob URL");
-    //     }
-    //   }
-    // }
-
-    // processImages();
-    // const buffers: any = [];
-
-    // data?.images?.forEach((image, index) => {
-    //   // if (image instanceof Blob || image instanceof File) {
-    //     const reader = new FileReader();
-    //     const imageBlob = getBlobFromURL(image);
-    //     reader.readAsArrayBuffer(imageBlob);
-
-    //     reader.onloadend = () => {
-    //       const buffer = reader.result;
-    //       buffers.push(buffer);
-
-    //       buffers.forEach((buffer: any, index: any) => {
-    //         formData.append(`images[${index}]`, new Blob([buffer]));
-    //       });
-    //     };
-    //   // } else {
-    //   //   console.error(`Item at index ${index} is not a Blob or File`);
-    //   // }
-    // });
-
-    // const convertFileToBuffer = file => {
-    //   return new Promise((resolve, reject) => {
-    //     const reader = new FileReader();
-    //     reader.onload = () => resolve(Buffer.from(reader.result));
-    //     reader.onerror = reject;
-    //     reader.readAsArrayBuffer(file);
-    //   });
-    // };
-
-    //   const bufferPromises = Array.from(data?.images).map(image =>
-    //     convertFileToBuffer(image)
-    //   );
-    //   const buffers = await Promise.all(bufferPromises);
-
-    //   // Append each buffer to the FormData as 'images[]'
-    //   buffers.forEach((buffer, index) => {
-    //     formData.append("images[]", new Blob([buffer]), data?.images[index].name);
-    //   });
-    
-    // data?.title && formData.append("title", data.title);
-    // data?.description && formData.append("description", data.description);
-    // data?.categoryId && formData.append("categoryId", data.categoryId);
-    // const imagesArray = img.map(file => ({file}));
 
     // Append images to FormData
     if ( data?.image ) {
@@ -173,15 +52,6 @@ const CreateComplaint = () => {
     formData.append("title", data?.title);
     formData.append("description", data?.description);
     formData.append("categoryId", data?.categoryId);
-    
-    // const payload = {
-    //   images: [...img],
-    //   title: data?.title,
-    //   description: data?.description,
-    //   categoryId: data?.categoryId,
-    // };
-
-    //  console.log('payload', payload);
 
     const token = JSON.parse(sessionStorage.getItem("userData") || "{}").token;
 
@@ -233,11 +103,9 @@ const CreateComplaint = () => {
             mt={"4rem"}
             gap={4}
             flexDir="column"
-            // justifyContent={"center"}
             fontSize="1.1rem"
             fontWeight={500}
             w={"70%"}
-            // mx={"auto"}
             px={2}
           >
             <Grid templateColumns="1fr 3fr" gap="1rem">
@@ -286,8 +154,8 @@ const CreateComplaint = () => {
             <Grid templateColumns="1fr 3fr" gap="1rem">
               <Text>Add Image</Text>
               <Flex alignItems={"start"}>
-                <ImageIconInput title={"image"} handler={formHook} />
-                {/* <ImageInput title={'images'} handler={formHook as any} /> */}
+                {/* <ImageIconInput title={"image"} handler={formHook} /> */}
+                <ImageInput title={'image'} handler={formHook as any} />
                 {/* <ImageUploader /> */}
                 {/* <input type="file" onChange={handleImgChange} multiple/> */}
               </Flex>

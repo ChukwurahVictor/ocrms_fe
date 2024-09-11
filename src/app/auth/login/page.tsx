@@ -1,8 +1,6 @@
 "use client";
 
-import themes from "@/utils/themes";
-import { Box, Flex, Text, useMediaQuery } from "@chakra-ui/react";
-import Image from "next/image";
+import { Box, Flex, Text } from "@chakra-ui/react";
 import React from "react";
 import { useForm, SubmitHandler, Resolver } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -12,15 +10,10 @@ import Link from "next/link";
 import AppButton from "@/components/app-button";
 import { useLoginMutation } from "@/services/mutations/auth.mutation";
 import { useRouter } from "next/navigation";
-// import { Text } from "@/components/app-text";
 import { LoginType } from "@/types/auth";
-import { ErrorToast, SuccessToast } from "@/utils/toasts";
 import toast from "react-hot-toast";
 
 const Login = () => {
-  //   const color = themes.colors.typography;
- 
-
   const router = useRouter();
   const loginMutation = useLoginMutation();
   const { mutateAsync: login, isLoading } = loginMutation;
@@ -50,7 +43,7 @@ const Login = () => {
         sessionStorage.setItem("userData", JSON.stringify(result?.data));
 
         // route user to dashboard
-        if (result?.data?.user?.userRole == "Admin") {
+        if (result?.data?.user?.userRole == "Admin" || result?.data?.user?.userRole == "Super_Admin") {
           return router.push("/admin/dashboard");
         } else if (result?.data?.user?.userRole == "Staff") {
           return router.push("/staff/dashboard");
@@ -60,7 +53,6 @@ const Login = () => {
       }
     } catch (error: any) {
       toast.error(error?.message || "An error occurred");
-      // ErrorToast(error?.message || "An error occurred");
       throw new Error(error);
     }
   };

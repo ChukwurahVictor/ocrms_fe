@@ -37,6 +37,10 @@ export const useAssignComplaintMutation = (id: string) => {
         queryClient.invalidateQueries({
           queryKey: ["fetchComplaint"],
         });
+
+        queryClient.invalidateQueries({
+          queryKey: ["fetchAllComplaints"],
+        });
       },
     }
   );
@@ -53,6 +57,10 @@ export const useUpdateComplaintMutation = (id: string) => {
       onSuccess: () => {
         queryClient.invalidateQueries({
           queryKey: ["fetchComplaint"],
+        });
+
+        queryClient.invalidateQueries({
+          queryKey: ["fetchAllComplaints"],
         });
       },
     }

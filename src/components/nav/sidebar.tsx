@@ -35,10 +35,6 @@ const SideBar = ({ navItems, navSize, changeNavSize }: PropType) => {
     }
   }, []);
 
-  const logout = () => {
-    window.sessionStorage.removeItem("userData");
-  }
-
   return (
     <Flex
       h="100vh"

@@ -34,7 +34,7 @@ const AdminLayout = ({ children }: { children: ReactNode }) => {
       path: "/admin/staff",
       icon: FiUser,
     },
-    ...(userObj?.user.userRole === "Admin" // TO DO: change to super admin
+    ...(userObj?.user.userRole === "Super_Admin"
       ? [
           {
             label: "Admin",

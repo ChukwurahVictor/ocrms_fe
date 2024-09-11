@@ -1,23 +1,11 @@
 "use client";
 
-import { Box, Flex, useMediaQuery } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 import { ReactNode, useState } from "react";
-import {
-  FiMenu,
-  FiHome,
-  FiCalendar,
-  FiUser,
-  FiDollarSign,
-  FiBriefcase,
-  FiSettings,
-} from "react-icons/fi";
-import { RxDashboard } from "react-icons/rx";
-import { IoNotifications } from "react-icons/io5";
-import { GrNotes } from "react-icons/gr";
+import { FiSettings } from "react-icons/fi";
 import { MdStickyNote2 } from "react-icons/md";
 import { MdDashboard } from "react-icons/md";
 
-import Navbar from "@/components/nav";
 import SideBar from "@/components/nav/sidebar";
 
 const UserLayout = ({ children }: { children: ReactNode }) => {
@@ -32,11 +20,6 @@ const UserLayout = ({ children }: { children: ReactNode }) => {
       path: "/users/my-account",
       icon: MdStickyNote2,
     },
-    // {
-    //   label: "Notifications",
-    //   path: "/users/notifications",
-    //   icon: IoNotifications,
-    // },
     {
       label: "Settings",
       path: "/users/settings",
@@ -48,7 +31,6 @@ const UserLayout = ({ children }: { children: ReactNode }) => {
 
   const childrenStyle = {
     marginLeft: navSize === "large" ? "200px" : "100px",
-    // transition: "margin 0.3s ease",
   };
 
   return (

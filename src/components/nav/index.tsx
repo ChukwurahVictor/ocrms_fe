@@ -32,7 +32,9 @@ const Navbar = ({ isSideBarOpen }: { isSideBarOpen: boolean }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const handleLogout = () => {
+    window.sessionStorage.removeItem("userData");
     toast.success("Logout Successful!");
+    window.location.href = "auth/login";
   };
 
   return (
@@ -64,7 +66,7 @@ const Navbar = ({ isSideBarOpen }: { isSideBarOpen: boolean }) => {
           <Image src="" alt="logo" priority />
         </Link>
       </Flex>
-      <Flex gap="4" alignItems="center">
+      {/* <Flex gap="4" alignItems="center">
         <Menu>
           <MenuButton as={AppButton} rightIcon={<ChevronDownIcon />}>
             Admin User
@@ -86,7 +88,7 @@ const Navbar = ({ isSideBarOpen }: { isSideBarOpen: boolean }) => {
             </MenuItem>
           </MenuList>
         </Menu>
-      </Flex>
+      </Flex> */}
     </Flex>
   );
 };
