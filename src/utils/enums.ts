@@ -6,6 +6,8 @@ export enum Statuses {
   Closed = "Closed",
   Escalated = "Escalated",
   Archived = "Archived",
+  Active = "Active",
+  InActive = "Inactive"
 }
 
 export enum Priority {

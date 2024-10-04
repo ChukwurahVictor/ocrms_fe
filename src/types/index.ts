@@ -128,6 +128,7 @@ export type StaffType = {
   lastName: string;
   gender?: string;
   status?: boolean;
+  email?: string;
   department: {
     name: string;
   };

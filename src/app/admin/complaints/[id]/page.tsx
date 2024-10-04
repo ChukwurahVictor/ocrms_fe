@@ -50,16 +50,16 @@ const ViewComplaint = () => {
           </AppButton>
           <AppButton
             width="10px"
-            backgroundColor={"green"}
-            hoverBackgroundColor={"green"}
+            backgroundColor={"bg.green"}
+            hoverBackgroundColor={"bg.darkGreen"}
             onClick={() => setIsAssignOpen(true)}
           >
             Assign
           </AppButton>
           <AppButton
             width="10px"
-            backgroundColor={"red"}
-            hoverBackgroundColor={"red"}
+            backgroundColor="bg.red"
+            hoverBackgroundColor="bg.darkRed"
             onClick={() => router.back()}
           >
             Back

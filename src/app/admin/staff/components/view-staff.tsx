@@ -1,3 +1,4 @@
+import { AppStatus } from '@/components/app-status';
 import { StaffType } from '@/types';
 import { Flex, Grid, Text } from '@chakra-ui/react';
 import React from 'react'
@@ -21,8 +22,12 @@ const ViewStaff = ({ data }: { data: StaffType }) => {
         <Text>{data?.lastName ?? "N/A"}</Text>
       </Grid>
       <Grid templateColumns="1fr 2fr" alignItems="center" gap="1rem">
+        <Text color="text.blue">Email: </Text>
+        <Text>{data?.email ?? "N/A"}</Text>
+      </Grid>
+      <Grid templateColumns="1fr 2fr" alignItems="center" gap="1rem">
         <Text color="text.blue">Status: </Text>
-        <Text>{data?.status ? "Active" : "Inactive"}</Text>
+        <AppStatus label={data?.status ? "Active" : "Inactive"} style={{ width: '6rem'}} />
       </Grid>
       <Grid templateColumns="1fr 2fr" alignItems="center" gap="1rem">
         <Text color="text.blue">Department: </Text>

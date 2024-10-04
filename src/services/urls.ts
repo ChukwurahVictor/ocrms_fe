@@ -22,7 +22,11 @@ const urls = {
   profile: `${baseUrl}/user/profile`,
   profileUpdate: `${baseUrl}/user/profile/update`,
   category: `${baseUrl}/category`,
-  addComplaintFeedback: (id: string) => `${baseUrl}/complaints/${id}/feedbacks`
+  addComplaintFeedback: (id: string) => `${baseUrl}/complaints/${id}/feedbacks`,
+  enableStaff: (id: string) => `${baseUrl}/staff/${id}/enable`,
+  disableStaff: (id: string) => `${baseUrl}/staff/${id}/disable`,
+  resendStaffWelcome: (id: string) =>
+    `${baseUrl}/staff/${id}/resend-welcome-email`,
 };
 
 export default urls;

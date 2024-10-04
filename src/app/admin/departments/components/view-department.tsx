@@ -17,11 +17,14 @@ const ViewDepartment = ({ data }: { data: any }) => {
         </Grid>
         <Grid templateColumns="1fr 2fr" alignItems="center" gap="1rem">
           <Text color="text.blue">Description: </Text>
-          <Text>{data?.description ?? 'N/A'}</Text>
+          <Text>{data?.description ?? "N/A"}</Text>
         </Grid>
         <Grid templateColumns="1fr 2fr" alignItems="center" gap="1rem">
           <Text color="text.blue">Status: </Text>
-          <Text>{data?.status ? 'Active' : 'Inactive'}</Text>
+          <AppStatus
+            label={data?.status ? "Active" : "Inactive"}
+            style={{ width: "6rem" }}
+          />
         </Grid>
       </Flex>
     );

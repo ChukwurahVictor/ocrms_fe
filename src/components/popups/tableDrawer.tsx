@@ -26,7 +26,7 @@ const TableDrawer = ({ isOpen, handleClose, size = 'sm', header, children, foote
       isOpen={isOpen}
       onClose={() => handleClose()}
       returnFocusOnClose={false}
-      closeOnOverlayClick={false}
+      closeOnOverlayClick={true}
       size={size}
     >
       <DrawerOverlay />
